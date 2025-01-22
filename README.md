@@ -6,10 +6,21 @@ Este modelo conceitual representa a estrutura básica de um sistema de e-commerc
 
 **Entidades:**
 
-* **Cliente:** Representa um cliente da loja, podendo ser pessoa física ou jurídica.
-* **Conta:** Representa a conta bancária do cliente associada aos pagamentos.
-* **Pagamento:** Armazena as informações sobre os métodos de pagamento cadastrados pelo cliente.
-* **Entrega:** Armazena informações sobre o status e o rastreamento das entregas.
+* **CLIENTE e CONTA:**
+Um cliente pode ter uma conta associada. Cada conta pertence exclusivamente a um cliente.
+Relacionamento 1:1.
+
+* **CLIENTE e PEDIDO:**
+Um cliente pode realizar vários pedidos.
+Relacionamento 1:N.
+
+* **PEDIDO e PAGAMENTO:**
+Um pedido pode ser pago com várias formas de pagamento.
+Relacionamento 1:N.
+
+* **PEDIDO e ENTREGA:**
+Cada pedido possui uma única entrega associada.
+Relacionamento 1:1.
 
 **Relacionamentos:**
 
