@@ -2,7 +2,49 @@
 
 Este modelo conceitual representa a estrutura básica de um sistema de e-commerce. O objetivo é fornecer uma visão geral das entidades e relacionamentos envolvidos no processo de compra, desde o cadastro do cliente até a entrega do produto.
 
-![Projeto Conceitual de Banco de Dados – E-COMMERCE](https://github.com/user-attachments/assets/0becce17-cbcf-4cb3-b686-d5c7b015aab2)
+![Projeto Conceitual de Banco de Dados – E-COMMERCE](https://github.com/user-attachments/assets/223a52d8-feeb-422d-b2e9-5a33590bde5c)
+
+# Modelo Conceitual
+
+Entidades principais:
+
+1. CLIENTE
+   - ID_Cliente (PK)
+   - Nome
+   - Tipo_Cliente (PF ou PJ)
+
+2. PESSOA_FISICA (Especialização de CLIENTE)
+   - ID_Cliente (FK, PK)
+   - CPF
+   - Data_Nascimento
+
+3. PESSOA_JURIDICA (Especialização de CLIENTE)
+   - ID_Cliente (FK, PK)
+   - CNPJ
+   - Razao_Social
+
+4. CONTA
+   - ID_Conta (PK)
+   - ID_Cliente (FK)
+   - Saldo
+
+5. PEDIDO
+   - ID_Pedido (PK)
+   - Data
+   - Valor_Total
+   - ID_Cliente (FK)
+
+6. PAGAMENTO
+   - ID_Pagamento (PK)
+   - ID_Pedido (FK)
+   - Tipo_Pagamento (Cartão, Pix, Boleto)
+   - Valor
+
+7. ENTREGA
+   - ID_Entrega (PK)
+   - ID_Pedido (FK)
+   - Status (Em processamento, Enviado, Entregue)
+   - Codigo_Rastreio
 
 **Entidades:**
 
@@ -25,13 +67,8 @@ Relacionamento 1:N.
 * Cada pedido possui uma única entrega associada.
 Relacionamento 1:1.
 
-**Considerações:**
+**Regras Adicionais:**
 
-* O atributo "Tipo" na entidade Cliente serve para diferenciar entre pessoa física e jurídica.
-* A entidade Pedido não foi detalhada neste modelo, mas seria responsável por armazenar informações sobre os produtos comprados, data do pedido, etc.
-
-**Próximos passos:**
-
-* Desenvolver o modelo lógico e físico do banco de dados.
-* Implementar as funcionalidades do sistema.
-* Realizar testes e ajustes no modelo.
+* Um cliente é obrigatoriamente Pessoa Física ou Jurídica, mas nunca ambos.
+* O valor total de um pedido deve ser igual à soma dos valores das formas de pagamento associadas.
+* O status da entrega deve ser atualizado conforme o progresso do pedido.
